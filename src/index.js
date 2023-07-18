@@ -3,9 +3,10 @@ const app = express();
 const userRouter = require("./routes/userRoutes");
 const noteRouter = require("./routes/noteRoutes");
 const dotenv= require("dotenv");
+const path = require("path")
 const cors= require("cors");
 
-dotenv.config();
+dotenv.config({path: path.resolve(__dirname, "./.env")});
 
 const mongoose = require("mongoose");
 
@@ -19,6 +20,7 @@ app.use("/note", noteRouter)
 app.get("/", (req, res) => {
     res.send("Notes API!!");
 })
+
 
 const PORT = process.env.PORT || 5000;
 
