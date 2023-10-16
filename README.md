@@ -1,5 +1,5 @@
 # notesApi
-An API to manage Notes
+An API to manage Notes.
 # Tech Used
 * JavaScript
 * Node Js
