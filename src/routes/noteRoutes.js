@@ -2,8 +2,9 @@ const express = require("express");
 const { getNotes, createNotes, deleteNote, updateNote } = require("../controllers/noteController");
 const auth = require("../middlewares/auth");
 const noteRouter = express.Router();
+const { cacheNotes } = require('../middlewares/cache');
 
-noteRouter.get("/",auth, getNotes);
+noteRouter.get("/",auth, cacheNotes, getNotes);
 
 noteRouter.post("/",auth, createNotes);
 
