@@ -16,7 +16,7 @@ const createNotes = async (req, res) => {
     try {
 
         await newNote.save();
-        await redisClient.del(`note:${req.userId}`);
+        await redisClient.del(`notes:${req.userId}`);
         res.status(201).json(newNote);
 
 
@@ -39,7 +39,7 @@ const updateNote = async (req, res) => {
     try {
 
         await noteModel.findByIdAndUpdate(id, newNote, { new: true });
-        await redisClient.del(`note:${req.userId}`);
+        await redisClient.del(`notes:${req.userId}`);
         res.status(200).json(newNote);
 
     } catch (error) {
@@ -54,7 +54,7 @@ const deleteNote = async (req, res) => {
     try {
 
         const note = await noteModel.findByIdAndRemove(id);
-        await redisClient.del(`note:${req.userId}`);
+        await redisClient.del(`notes:${req.userId}`);
         res.status(202).json(note);
 
     } catch (error) {
